@@ -37,4 +37,5 @@ ping 192.168.20.2 # should succeed from the management pc
 ```
 ## Topology and Results
 Here is the final topology, in the right bottom corner we can appreciate the failed/successful ICMP messages depending on which VLAN is the one trying to communicate. 
-![Screenshot 2025-05-25 163745](https://github.com/user-attachments/assets/1372a6fb-18a3-47b7-8d60-4f6878525340)
+![Screenshot 2025-05-25 163745](https://github.com/user-attachments/assets/8c223606-7a90-434b-b233-527a35d447d9)
+
