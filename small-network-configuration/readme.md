@@ -144,7 +144,7 @@ Simulated internet connectivity through Loopback, and routes traffic to R1 for i
 ### 9. Test Connection
 10. Ping from VLAN 40 (PC6) to any other VLAN (10.10.0.2 for instance)... This should work.
 11. Ping from VLAN 10 to VLAN 40 (192.168.40.3) this should fail.
-The ACL for this lab was specific for ping requests to the visible in and out of VLAN 40, this was just the specification for this lab... A more real world use of ACL would look like this:
+The ACL for this lab was specific for ping requests to be visible in and out of VLAN 40... A more real world use of ACL would look like this:
 ```bash
 ip access-list extended MANAGEMENT_FILTER
  # ALLOWED SERVICES (VLAN 40 → OTHERS)
