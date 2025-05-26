@@ -147,22 +147,22 @@ Simulated internet connectivity through Loopback, and routes traffic to R1 for i
 The ACL for this lab was specific for ping requests to the visible in and out of VLAN 40, this was just the specification for this lab... A more real world use of ACL would look like this:
 ```bash
 ip access-list extended MANAGEMENT_FILTER
- ! ALLOWED SERVICES (VLAN 40 → OTHERS)
- ! ICMP (Ping)
+ # ALLOWED SERVICES (VLAN 40 → OTHERS)
+ # ICMP (Ping)
  permit icmp 192.168.40.0 0.0.0.7 10.10.0.0 0.0.0.255 echo
  permit icmp 192.168.40.0 0.0.0.7 10.20.0.0 0.0.0.255 echo
  permit icmp 192.168.40.0 0.0.0.7 10.30.0.0 0.0.0.255 echo
- ! SSH (Port 22)
+ # SSH (Port 22)
  permit tcp 192.168.40.0 0.0.0.7 10.10.0.0 0.0.0.255 eq 22 log
  permit tcp 192.168.40.0 0.0.0.7 10.20.0.0 0.0.0.255 eq 22 log
  permit tcp 192.168.40.0 0.0.0.7 10.30.0.0 0.0.0.255 eq 22 log
- ! RDP (Port 3389)
+ # RDP (Port 3389)
  permit tcp 192.168.40.0 0.0.0.7 10.10.0.0 0.0.0.255 eq 3389 log
  permit tcp 192.168.40.0 0.0.0.7 10.20.0.0 0.0.0.255 eq 3389 log
  permit tcp 192.168.40.0 0.0.0.7 10.30.0.0 0.0.0.255 eq 3389 log
- ! DNS (Port 53)
+ # DNS (Port 53)
  permit udp 192.168.40.0 0.0.0.7 any eq 53 log
- ! ALLOW REPLIES TO VLAN 40
+ # ALLOW REPLIES TO VLAN 40
  permit icmp 10.10.0.0 0.0.0.255 192.168.40.0 0.0.0.7 echo-reply
  permit icmp 10.20.0.0 0.0.0.255 192.168.40.0 0.0.0.7 echo-reply
  permit icmp 10.30.0.0 0.0.0.255 192.168.40.0 0.0.0.7 echo-reply
@@ -170,15 +170,15 @@ ip access-list extended MANAGEMENT_FILTER
  permit tcp 10.20.0.0 0.0.0.255 192.168.40.0 0.0.0.7 established log
  permit tcp 10.30.0.0 0.0.0.255 192.168.40.0 0.0.0.7 established log
 
- ! (PROTECT VLAN 40)
- ! Block common attacks
+ # (PROTECT VLAN 40)
+ # Block common attacks
  deny tcp any 192.168.40.0 0.0.0.7 eq 22 log
  deny tcp any 192.168.40.0 0.0.0.7 eq 3389 log
  deny udp any 192.168.40.0 0.0.0.7 eq 161 log  # SNMP
  deny tcp any 192.168.40.0 0.0.0.7 eq 80 log   # HTTP
  deny tcp any 192.168.40.0 0.0.0.7 eq 443 log  # HTTPS
 
- !ALLOW INTER-VLAN COMMUNICATION
+ # ALLOW INTER-VLAN COMMUNICATION
  permit ip 10.10.0.0 0.0.0.255 10.20.0.0 0.0.0.255
  permit ip 10.10.0.0 0.0.0.255 10.30.0.0 0.0.0.255
  permit ip 10.20.0.0 0.0.0.255 10.30.0.0 0.0.0.255
